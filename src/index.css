@@ -120,4 +120,116 @@
     background-clip: text;
     color: transparent;
   }
+
+  /* Package Table Styles */
+  .package-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  .package-table {
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .package-header {
+    background: var(--gradient-primary);
+    font-weight: bold;
+    color: hsl(var(--primary-foreground));
+    padding: 15px;
+    text-align: left;
+    border: 1px solid hsl(var(--border));
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .package-row:nth-child(odd) {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+
+  .package-row:hover {
+    background-color: hsl(var(--muted));
+  }
+
+  .package-cell {
+    border: 1px solid hsl(var(--border));
+    padding: 12px 15px;
+    text-align: left;
+    word-wrap: break-word;
+  }
+
+  .feature-cell {
+    position: sticky;
+    left: 0;
+    background-color: hsl(var(--background));
+    z-index: 1;
+    font-weight: 600;
+    box-shadow: 5px 0 5px -5px hsl(var(--border));
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .package-table {
+      border: none;
+      background: transparent;
+    }
+
+    .package-table thead {
+      display: none;
+    }
+
+    .package-table tbody tr {
+      display: block;
+      margin-bottom: 20px;
+      background: hsl(var(--card));
+      border-radius: 10px;
+      box-shadow: 0 3px 10px hsl(var(--border) / 0.3);
+      overflow: hidden;
+      border: 1px solid hsl(var(--border));
+    }
+
+    .package-cell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border: none !important;
+      border-bottom: 1px solid hsl(var(--border)) !important;
+      text-align: right;
+    }
+
+    .feature-cell {
+      background: hsl(var(--muted));
+      font-weight: 700;
+      font-size: 1.1em;
+      color: hsl(var(--foreground));
+      border-bottom: 2px solid hsl(var(--border)) !important;
+      text-align: left;
+      position: static;
+      box-shadow: none;
+    }
+
+    .package-cell:not(.feature-cell)::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      margin-right: 15px;
+      float: left;
+      text-align: left;
+      width: 30%;
+    }
+
+    .package-cell:last-child {
+      border-bottom: none !important;
+    }
+
+    .package-row:hover {
+      background: transparent;
+    }
+  }
 }

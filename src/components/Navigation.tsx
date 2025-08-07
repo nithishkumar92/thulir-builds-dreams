@@ -15,9 +15,9 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#", label: "Home" },
+    { href: "/", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
+    { href: "/services", label: "Services" },
     { href: "#why-choose", label: "Why Choose Us" },
     { href: "#contact", label: "Contact" },
   ];
