@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Eye, Award, Clock, ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-construction.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -36,9 +37,11 @@ const Hero = () => {
                 <Phone size={18} />
                 Get Free Quote
               </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Eye size={18} />
-                View Projects
+              <Button asChild variant="outline" size="lg" className="gap-2">
+                <Link to="/gallery">
+                  <Eye size={18} />
+                  View Projects
+                </Link>
               </Button>
             </div>
 
