@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   deploy:
@@ -16,35 +13,28 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build project
         run: npm run build
-      
-      - name: Deploy to Thulir repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.THULIR_DEPLOY_TOKEN }}
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Clone the target repository
-         git clone https://x-access-token:${{ secrets.THULIR_DEPLOY_TOKEN }}@github.com/nithishkumar92/thulir.git target-repo
 
-          
-          # Copy build files to target repository
+      - name: Deploy to Thulir repository
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Clone the target repository using your PAT
+          git clone https://x-access-token:${{ secrets.THULIR_DEPLOY_TOKEN }}@github.com/nithishkumar92/thulir.git target-repo
+          # Copy build output to the target repo
           cp -r dist/* target-repo/
-          
-          # Commit and push changes
           cd target-repo
           git add .
-          git commit -m "Auto-deploy from thulir-builds-dreams: ${{ github.sha }}"
+          git commit -m "Auto-deploy from thulir-builds-dreams: ${{ github.sha }}" || echo "No changes to commit"
           git push origin main
