@@ -37,7 +37,8 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
           # Clone the target repository
-          git clone https://${GITHUB_TOKEN}@github.com/nithishkumar92/thulir.git target-repo
+         git clone https://x-access-token:${{ secrets.THULIR_DEPLOY_TOKEN }}@github.com/nithishkumar92/thulir.git target-repo
+
           
           # Copy build files to target repository
           cp -r dist/* target-repo/
